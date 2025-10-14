@@ -56,6 +56,11 @@
     background-color: #e2e6eb;
 }
 
+.sidebar .recent-entry.active {
+    background-color: #d1e7dd;
+    border-left: 3px solid #4b90ff;
+}
+
 
 .sidebar .bottom {
     display: flex;
