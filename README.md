@@ -36,7 +36,7 @@ A web-based clone of the Gemini app, built with modern web technologies. This pr
    ```
 
 4. **Open in browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the app.
+   Navigate to [http://localhost:3000](http://localhost:5173) to see the app.
 
 ## Usage
 
