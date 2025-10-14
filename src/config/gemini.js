@@ -11,7 +11,7 @@ import {
   } from "@google/generative-ai";
   
   const MODEL_NAME = "gemini-2.0-flash";
-  const API_KEY = "AIzaSyAeKjw3USy0LrCbYtkByCGgP0vR979sV9Y";
+  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
   
   function fileToGenerativePart(file) {
