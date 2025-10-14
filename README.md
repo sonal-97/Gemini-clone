@@ -1,67 +1,51 @@
 # Gemini Clone
 
-A web-based clone of the Gemini app, built with modern web technologies. This project replicates the core functionality and UI of the popular image-enhancement app, allowing users to upload photos, enhance image quality, and apply various filters.
+A modern AI chat application built with React and Vite, featuring voice input, image upload, and conversation management.
 
 ## Features
 
-- **Image Upload**: Upload images for enhancement and filtering.
-- **Image Enhancement**: Apply quality enhancement to improve clarity.
-- **Filters**: Choose from a variety of filters for creative effects.
-- **Responsive Design**: Fully responsive and mobile-friendly UI.
-- **Smooth UI**: Simple, user-friendly interface for seamless navigation.
+- 🤖 **AI Chat** - Powered by Google's Gemini API
+- 🎤 **Voice Input** - Speech-to-text functionality
+- 🖼️ **Image Upload** - Send images to AI for analysis
+- 💬 **Multi-Chat** - Create and manage multiple conversations
+- 🌐 **Multi-Language** - Supports Hindi and English
+- 📱 **Responsive Design** - Works on all devices
 
-## Built With
+## Tech Stack
 
-- **React**: Front-end library for building user interfaces.
-- **CSS**: Styling framework for responsive, visually appealing design.
-- **Node.js** (optional for backend): API integration and image processing (if required).
-- **Third-Party API** (optional): For advanced image processing and effects.
+- React 18
+- Vite
+- Google Generative AI (Gemini)
+- Web Speech API
+- CSS3
 
 ## Getting Started
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/remini-clone.git
-   cd remini-clone
-   ```
-
-2. **Install dependencies**:
+1. Clone the repository
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-3. **Start the development server**:
-   ```bash
-   npm start
+3. Create a `.env` file and add your Gemini API key:
    ```
-
-4. **Open in browser**:
-   Navigate to [http://localhost:3000](http://localhost:5173) to see the app.
+   VITE_GEMINI_API_KEY=your_api_key_here
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
 ## Usage
 
-- **Image Upload**: Click "Upload" to add an image for enhancement.
-- **Apply Enhancement**: Select enhancement options and filters to transform the image.
-- **Download**: Save the enhanced image to your device.
+- Type or speak your message
+- Upload images for AI analysis
+- Create new chats with the + button
+- Switch between conversations in the sidebar
 
-## Folder Structure
+## Environment Variables
 
-- `/src`: Contains main application files.
-  - `/components`: React components for UI.
-  - `/assets`: Static assets (images, icons, etc.).
-  - `/styles`: CSS files for styling.
-  - `/api`: Functions for API calls (if integrating a backend).
-
-## Contributing
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature-name`.
-3. Commit changes: `git commit -m 'Add some feature'`.
-4. Push to the branch: `git push origin feature-name`.
-5. Open a pull request.
+- `VITE_GEMINI_API_KEY` - Your Google Gemini API key
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
+MIT License

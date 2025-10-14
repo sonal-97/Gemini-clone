@@ -229,6 +229,18 @@ const ContextProvider = (props) => {
   };
 
   const onSent = async (prompt, imageFile = null) => {
+    // Get the final prompt BEFORE clearing input
+    const finalPrompt = prompt !== undefined ? prompt : input;
+    const finalImageFile = imageFile || uploadedImage;
+
+    // Don't proceed if no prompt
+    if (!finalPrompt || finalPrompt.trim() === "") {
+      console.log("No prompt provided, not sending");
+      return;
+    }
+
+    console.log("Sending message:", finalPrompt);
+
     // Create new chat if none exists
     let chatId = currentChatId;
     if (!chatId) {
@@ -244,10 +256,6 @@ const ContextProvider = (props) => {
       setCurrentChatId(newChatId);
       chatId = newChatId;
     }
-
-    // Clear input immediately when sending
-    const finalPrompt = prompt !== undefined ? prompt : input;
-    const finalImageFile = imageFile || uploadedImage;
 
     // Clear input right away
     setInput("");
@@ -297,6 +305,7 @@ const ContextProvider = (props) => {
       console.log("Sending full conversation to API:", fullConversationPrompt);
 
       if (finalImageFile) {
+        console.log("Sending with image");
         response = await runChat(
           fullConversationPrompt,
           finalImageFile,
@@ -304,10 +313,15 @@ const ContextProvider = (props) => {
         );
         setUploadedImage(null);
       } else {
+        console.log("Sending text only");
         response = await runChat(fullConversationPrompt, null, currentLang);
       }
 
-      console.log("API Response:", response);
+      console.log("API Response received:", response);
+
+      if (!response || response.trim() === "") {
+        throw new Error("Empty response from API");
+      }
 
       // Add user message to conversation history immediately
       const userMessage = {
@@ -327,6 +341,9 @@ const ContextProvider = (props) => {
         const nextWord = newResponseArray[i];
         delayPara(i, nextWord + " ");
       }
+
+      // Stop loading immediately after getting response
+      setLoading(false);
 
       // Add AI response to conversation history after typing animation completes
       setTimeout(() => {
@@ -356,11 +373,13 @@ const ContextProvider = (props) => {
     } catch (error) {
       console.error("API Error:", error);
       setResultData(
-        "Sorry, there was an error processing your request. Please try again."
+        `Error: ${
+          error.message ||
+          "Sorry, there was an error processing your request. Please try again."
+        }`
       );
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const contextValue = {

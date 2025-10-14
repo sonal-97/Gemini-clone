@@ -12,6 +12,11 @@ import {
   
   const MODEL_NAME = "gemini-2.0-flash";
   const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  
+  // Debug logging
+  console.log("Environment variables:", import.meta.env);
+  console.log("API_KEY from env:", API_KEY);
+  console.log("API_KEY length:", API_KEY ? API_KEY.length : 0);
 
   
   function fileToGenerativePart(file) {
@@ -33,6 +38,13 @@ import {
   async function runChat(prompt, imageFile = null, language = 'en') {
     try {
       console.log("runChat called with:", { prompt, imageFile, language });
+      console.log("API_KEY in runChat:", API_KEY);
+      console.log("API_KEY type:", typeof API_KEY);
+      console.log("API_KEY length:", API_KEY ? API_KEY.length : 0);
+      
+      if (!API_KEY || API_KEY === "undefined") {
+        throw new Error("API key is missing or undefined. Check your .env file and restart dev server.");
+      }
       
       const genAI = new GoogleGenerativeAI(API_KEY);
       
