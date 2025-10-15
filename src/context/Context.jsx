@@ -239,7 +239,7 @@ const ContextProvider = (props) => {
       return;
     }
 
-    console.log("Sending message:", finalPrompt);
+
 
     // Create new chat if none exists
     let chatId = currentChatId;
@@ -302,10 +302,9 @@ const ContextProvider = (props) => {
         fullConversationPrompt = `Please respond in Hindi (हिंदी) language only.\n\n${fullConversationPrompt}`;
       }
 
-      console.log("Sending full conversation to API:", fullConversationPrompt);
+
 
       if (finalImageFile) {
-        console.log("Sending with image");
         response = await runChat(
           fullConversationPrompt,
           finalImageFile,
@@ -313,11 +312,8 @@ const ContextProvider = (props) => {
         );
         setUploadedImage(null);
       } else {
-        console.log("Sending text only");
         response = await runChat(fullConversationPrompt, null, currentLang);
       }
-
-      console.log("API Response received:", response);
 
       if (!response || response.trim() === "") {
         throw new Error("Empty response from API");
